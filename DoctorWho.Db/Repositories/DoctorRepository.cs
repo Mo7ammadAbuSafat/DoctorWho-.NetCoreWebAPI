@@ -17,17 +17,22 @@ namespace DoctorWho.Db.Repositories
             return await context.SaveChangesAsync();
         }
 
+        public int SaveChanges()
+        {
+            return context.SaveChanges();
+        }
+
         public async Task AddAsync(Doctor doctor)
         {
             await context.doctors.AddAsync(doctor);
         }
 
-        public void DeleteAsync(Doctor doctor)
+        public void Delete(Doctor doctor)
         {
             context.doctors.Remove(doctor);
         }
 
-        public void UpdateAsync(Doctor doctor)
+        public void Update(Doctor doctor)
         {
             context.doctors.Update(doctor);
         }
@@ -41,10 +46,14 @@ namespace DoctorWho.Db.Repositories
         {
             return await context.doctors.Include(d => d.Episodes).ToListAsync();
         }
-
-        public async Task<Doctor>? GetDoctorById(int id)
+        public async Task<Doctor>? GetDoctorByIdAsync(int id)
         {
             return await context.doctors.FindAsync(id);
+        }
+
+        public Doctor? GetDoctorById(int id)
+        {
+            return context.doctors.Find(id);
         }
 
     }

@@ -10,7 +10,7 @@ namespace DoctorWho.Db.Repositories
         public Task AddCompanionToEpisodeAsync(Companion companion, Episode episode);
         public Task<int> SaveChangesAsync();
         public Task AddAsync(Episode episode);
-        public void DeleteAsync(Episode episode);
-        public void UpdateAsync(Episode episode);
+        public void Delete(Episode episode);
+        public void Update(Episode episode);
     }
 }

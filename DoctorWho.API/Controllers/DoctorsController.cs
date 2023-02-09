@@ -53,5 +53,21 @@ namespace DoctorWho.API.Controllers
             return BadRequest();
 
         }
+
+        [HttpDelete("{doctorId}")]
+        public IActionResult Delete(int doctorId)
+        {
+            var doctorToDelete = doctorRepository.GetDoctorById(doctorId);
+            if (doctorToDelete == null)
+            {
+                return NotFound();
+            }
+
+            doctorRepository.Delete(doctorToDelete);
+            doctorRepository.SaveChanges();
+
+            return Ok();
+        }
+
     }
 }

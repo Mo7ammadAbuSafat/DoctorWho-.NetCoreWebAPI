@@ -18,7 +18,7 @@ namespace DoctorWho.Db.Repositories
             await context.enemys.AddAsync(enemy);
         }
 
-        public void DeleteAsync(Enemy enemy)
+        public void Delete(Enemy enemy)
         {
             context.enemys.Remove(enemy);
         }
@@ -28,7 +28,7 @@ namespace DoctorWho.Db.Repositories
             return await context.SaveChangesAsync();
         }
 
-        public void UpdateAsync(Enemy enemy)
+        public void Update(Enemy enemy)
         {
             context.enemys.Update(enemy);
         }

@@ -17,12 +17,12 @@ namespace DoctorWho.Db.Repositories
             await context.authors.AddAsync(author);
         }
 
-        public void DeleteAsync(Author author)
+        public void Delete(Author author)
         {
             context.authors.Remove(author);
         }
 
-        public void UpdateAsync(Author author)
+        public void Update(Author author)
         {
             context.authors.Update(author);
         }

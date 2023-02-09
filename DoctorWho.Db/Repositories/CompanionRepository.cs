@@ -18,7 +18,7 @@ namespace DoctorWho.Db.Repositories
             await context.companions.AddAsync(companion);
         }
 
-        public void DeleteAsync(Companion companion)
+        public void Delete(Companion companion)
         {
             context.companions.Remove(companion);
         }
@@ -28,7 +28,7 @@ namespace DoctorWho.Db.Repositories
             return await context.SaveChangesAsync();
         }
 
-        public void UpdateAsync(Companion companion)
+        public void Update(Companion companion)
         {
             context.companions.Update(companion);
         }

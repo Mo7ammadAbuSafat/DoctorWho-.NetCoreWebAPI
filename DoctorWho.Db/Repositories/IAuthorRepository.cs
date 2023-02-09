@@ -8,7 +8,7 @@ namespace DoctorWho.Db.Repositories
         public Author? GetAuthorById(int id);
         public Task<int> SaveChangesAsync();
         public Task AddAsync(Author author);
-        public void DeleteAsync(Author author);
-        public void UpdateAsync(Author author);
+        public void Delete(Author author);
+        public void Update(Author author);
     }
 }

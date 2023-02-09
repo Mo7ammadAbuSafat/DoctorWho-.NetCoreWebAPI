@@ -8,7 +8,7 @@ namespace DoctorWho.Db.Repositories
         public Task<Enemy>? GetEnemyById(int id);
         public Task<int> SaveChangesAsync();
         public Task AddAsync(Enemy enemy);
-        public void DeleteAsync(Enemy enemy);
-        public void UpdateAsync(Enemy enemy);
+        public void Delete(Enemy enemy);
+        public void Update(Enemy enemy);
     }
 }

@@ -8,7 +8,7 @@ namespace DoctorWho.Db.Repositories
         public Task<Companion>? GetCompanionById(int id);
         public Task<int> SaveChangesAsync();
         public Task AddAsync(Companion companion);
-        public void DeleteAsync(Companion companion);
-        public void UpdateAsync(Companion companion);
+        public void Delete(Companion companion);
+        public void Update(Companion companion);
     }
 }

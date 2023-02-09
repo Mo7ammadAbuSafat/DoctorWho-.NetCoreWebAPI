@@ -22,12 +22,12 @@ namespace DoctorWho.Db.Repositories
             await context.episodes.AddAsync(episode);
         }
 
-        public void DeleteAsync(Episode episode)
+        public void Delete(Episode episode)
         {
             context.episodes.Remove(episode);
         }
 
-        public void UpdateAsync(Episode episode)
+        public void Update(Episode episode)
         {
             context.episodes.Update(episode);
         }
