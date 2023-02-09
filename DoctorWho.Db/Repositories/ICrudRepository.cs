@@ -4,11 +4,7 @@ namespace DoctorWho.Db.Repositories
 {
     public abstract class ICrudRepository<T>
     {
-        protected readonly DoctorWhoCoreDbContext context;
-        public ICrudRepository(DoctorWhoCoreDbContext context)
-        {
-            this.context = context;
-        }
+        protected readonly DoctorWhoCoreDbContext context = new DoctorWhoCoreDbContext();
 
         public async Task AddAsync(T Item)
         {

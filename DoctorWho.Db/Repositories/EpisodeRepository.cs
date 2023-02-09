@@ -1,13 +1,10 @@
-﻿using DoctorWho.Db.DbContexts;
-using DoctorWho.Db.Models;
+﻿using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db.Repositories
 {
     public class EpisodeRepository : ICrudRepository<Episode>, IEpisodeRepository
     {
-        public EpisodeRepository(DoctorWhoCoreDbContext context) : base(context) { }
-
         public async Task<List<Episode>> GetAllEpisodesAsync()
         {
             return await context.episodes.ToListAsync();

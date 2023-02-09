@@ -14,7 +14,9 @@
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public string Notes { get; set; }
+        public Author author { get; set; }
         public int AuthorId { get; set; }
+        public Doctor doctor { get; set; }
         public int? DoctorId { get; set; }
         public ICollection<EnemyEpisode> enemyEpisode { get; set; }
         public ICollection<CompanionEpisode> companionEpisode { get; set; }

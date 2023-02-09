@@ -1,13 +1,10 @@
-﻿using DoctorWho.Db.DbContexts;
-using DoctorWho.Db.Models;
+﻿using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db.Repositories
 {
     public class EnemyRepository : ICrudRepository<Enemy>, IEnemyRepository
     {
-        public EnemyRepository(DoctorWhoCoreDbContext context) : base(context) { }
-
         public async Task<List<Enemy>> GetAllEnemiesAsync()
         {
             return await context.enemys.ToListAsync();

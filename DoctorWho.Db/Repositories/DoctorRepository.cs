@@ -1,16 +1,18 @@
-﻿using DoctorWho.Db.DbContexts;
-using DoctorWho.Db.Models;
+﻿using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db.Repositories
 {
     public class DoctorRepository : ICrudRepository<Doctor>, IDoctorRepository
     {
-        public DoctorRepository(DoctorWhoCoreDbContext context) : base(context) { }
-
-        public async Task<List<Doctor>> GetAllDoctorsAsync()
+        public async Task<List<Doctor>> GetAllDoctorsWithoutEpisodesAsync()
         {
             return await context.doctors.ToListAsync();
+        }
+
+        public async Task<List<Doctor>> GetAllDoctorsWithEpisodesAsync()
+        {
+            return await context.doctors.Include(d => d.Episodes).ToListAsync();
         }
 
         public async Task<Doctor>? GetDoctorById(int id)
