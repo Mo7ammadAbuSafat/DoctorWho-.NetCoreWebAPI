@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DoctorWho.API.Models;
+using DoctorWho.Db.Models;
 using DoctorWho.Db.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,24 @@ namespace DoctorWho.API.Controllers
                 var doctors = await doctorRepository.GetAllDoctorsWithoutEpisodesAsync();
                 return Ok(mapper.Map<IEnumerable<DoctorWithoutEpisodesDto>>(doctors));
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDoctor(DoctorForCreationDto doctor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var doctorToAdd = mapper.Map<Doctor>(doctor);
+            await doctorRepository.AddAsync(doctorToAdd);
+            if ((await doctorRepository.SaveChangesAsync()) > 0)
+            {
+                var doctorToReturn = mapper.Map<DoctorWithoutEpisodesDto>(doctorToAdd);
+                return Ok(doctorToReturn);
+            }
+            return BadRequest();
 
         }
     }

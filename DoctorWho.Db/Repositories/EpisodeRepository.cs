@@ -1,10 +1,37 @@
-﻿using DoctorWho.Db.Models;
+﻿using DoctorWho.Db.DbContexts;
+using DoctorWho.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db.Repositories
 {
-    public class EpisodeRepository : ICrudRepository<Episode>, IEpisodeRepository
+    public class EpisodeRepository : IEpisodeRepository
     {
+        private readonly DoctorWhoCoreDbContext context;
+        public EpisodeRepository(DoctorWhoCoreDbContext context)
+        {
+            this.context = context;
+
+        }
+        public async Task<int> SaveChangesAsync()
+        {
+            return await context.SaveChangesAsync();
+        }
+
+        public async Task AddAsync(Episode episode)
+        {
+            await context.episodes.AddAsync(episode);
+        }
+
+        public void DeleteAsync(Episode episode)
+        {
+            context.episodes.Remove(episode);
+        }
+
+        public void UpdateAsync(Episode episode)
+        {
+            context.episodes.Update(episode);
+        }
+
         public async Task<List<Episode>> GetAllEpisodesAsync()
         {
             return await context.episodes.ToListAsync();
@@ -32,5 +59,7 @@ namespace DoctorWho.Db.Repositories
                 episode = episode
             });
         }
+
+
     }
 }

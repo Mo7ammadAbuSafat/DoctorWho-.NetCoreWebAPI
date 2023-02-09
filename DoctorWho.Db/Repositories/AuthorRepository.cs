@@ -1,9 +1,37 @@
-﻿using DoctorWho.Db.Models;
+﻿using DoctorWho.Db.DbContexts;
+using DoctorWho.Db.Models;
 
 namespace DoctorWho.Db.Repositories
 {
-    public class AuthorRepository : ICrudRepository<Author>, IAuthorRepository
+    public class AuthorRepository : IAuthorRepository
     {
+        private readonly DoctorWhoCoreDbContext context;
+        public AuthorRepository(DoctorWhoCoreDbContext context)
+        {
+            this.context = context;
+
+        }
+
+        public async Task AddAsync(Author author)
+        {
+            await context.authors.AddAsync(author);
+        }
+
+        public void DeleteAsync(Author author)
+        {
+            context.authors.Remove(author);
+        }
+
+        public void UpdateAsync(Author author)
+        {
+            context.authors.Update(author);
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await context.SaveChangesAsync();
+        }
+
         public List<Author> GetAllAuthors()
         {
             return context.authors.ToList();

@@ -10,6 +10,7 @@ namespace DoctorWho.API.Profiles
         {
             CreateMap<Doctor, DoctorWithoutEpisodesDto>();
             CreateMap<Doctor, DoctorWithEpisodesDto>();
+            CreateMap<DoctorForCreationDto, Doctor>();
         }
 
     }
